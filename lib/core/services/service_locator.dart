@@ -7,7 +7,6 @@ import 'package:movies_app/movies/domain/usecases/get_all_top_rated_movies_useca
 import 'package:movies_app/movies/domain/usecases/get_movie_details_usecase.dart';
 import 'package:movies_app/movies/domain/usecases/get_movies_usecase.dart';
 import 'package:movies_app/movies/presentation/controllers/popular_movies_bloc/popular_movies_bloc.dart';
-import 'package:movies_app/movies/presentation/controllers/top_rated_movies_bloc/top_rated_movies_bloc.dart';
 import 'package:movies_app/search/data/datasource/search_remote_data_source.dart';
 import 'package:movies_app/search/data/repository/search_repository_impl.dart';
 import 'package:movies_app/search/domain/repository/search_repository.dart';
@@ -17,12 +16,10 @@ import 'package:movies_app/tv_shows/data/datasource/tv_shows_remote_data_source.
 import 'package:movies_app/tv_shows/data/repository/tv_shows_repository_impl.dart';
 import 'package:movies_app/tv_shows/domain/repository/tv_shows_repository.dart';
 import 'package:movies_app/tv_shows/domain/usecases/get_all_popular_tv_shows_usecase.dart';
-import 'package:movies_app/tv_shows/domain/usecases/get_all_top_rated_tv_shows_usecase.dart';
 import 'package:movies_app/tv_shows/domain/usecases/get_season_details_usecase.dart';
 import 'package:movies_app/tv_shows/domain/usecases/get_tv_show_details_usecase.dart';
 import 'package:movies_app/tv_shows/domain/usecases/get_tv_shows_usecase.dart';
 import 'package:movies_app/tv_shows/presentation/controllers/popular_tv_shows_bloc/popular_tv_shows_bloc.dart';
-import 'package:movies_app/tv_shows/presentation/controllers/top_rated_tv_shows_bloc/top_rated_tv_shows_bloc.dart';
 import 'package:movies_app/tv_shows/presentation/controllers/tv_show_details_bloc/tv_show_details_bloc.dart';
 import 'package:movies_app/tv_shows/presentation/controllers/tv_shows_bloc/tv_shows_bloc.dart';
 
@@ -70,7 +67,6 @@ class ServiceLocator {
     sl.registerLazySingleton(() => GetTVShowDetailsUseCase(sl()));
     sl.registerLazySingleton(() => GetSeasonDetailsUseCase(sl()));
     sl.registerLazySingleton(() => GetAllPopularTVShowsUseCase(sl()));
-    sl.registerLazySingleton(() => GetAllTopRatedTVShowsUseCase(sl()));
     sl.registerLazySingleton(() => SearchUseCase(sl()));
     sl.registerLazySingleton(() => GetWatchlistItemsUseCase(sl()));
     sl.registerLazySingleton(() => AddWatchlistItemUseCase(sl()));
@@ -81,11 +77,9 @@ class ServiceLocator {
     sl.registerFactory(() => MoviesBloc(sl()));
     sl.registerFactory(() => MovieDetailsBloc(sl()));
     sl.registerFactory(() => PopularMoviesBloc(sl()));
-    sl.registerFactory(() => TopRatedMoviesBloc(sl()));
     sl.registerFactory(() => TVShowsBloc(sl()));
     sl.registerFactory(() => TVShowDetailsBloc(sl(), sl()));
     sl.registerFactory(() => PopularTVShowsBloc(sl()));
-    sl.registerFactory(() => TopRatedTVShowsBloc(sl()));
     sl.registerFactory(() => SearchBloc(sl()));
     sl.registerFactory(() => WatchlistBloc(sl(), sl(), sl(), sl()));
   }

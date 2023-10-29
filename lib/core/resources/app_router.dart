@@ -4,10 +4,8 @@ import 'package:movies_app/core/presentation/pages/main_page.dart';
 import 'package:movies_app/movies/presentation/views/movie_details_view.dart';
 import 'package:movies_app/movies/presentation/views/movies_view.dart';
 import 'package:movies_app/movies/presentation/views/popular_movies_view.dart';
-import 'package:movies_app/movies/presentation/views/top_rated_movies_view.dart';
 import 'package:movies_app/search/presentation/views/search_view.dart';
 import 'package:movies_app/tv_shows/presentation/views/popular_tv_shows_view.dart';
-import 'package:movies_app/tv_shows/presentation/views/top_rated_tv_shows_view.dart';
 import 'package:movies_app/tv_shows/presentation/views/tv_show_details_view.dart';
 import 'package:movies_app/tv_shows/presentation/views/tv_shows_view.dart';
 
@@ -55,13 +53,6 @@ class AppRouter {
                   child: PopularMoviesView(),
                 ),
               ),
-              GoRoute(
-                name: AppRoutes.topRatedMoviesRoute,
-                path: topRatedMoviesPath,
-                pageBuilder: (context, state) => const CupertinoPage(
-                  child: TopRatedMoviesView(),
-                ),
-              ),
             ],
           ),
           GoRoute(
@@ -85,13 +76,6 @@ class AppRouter {
                 path: popularTVShowsPath,
                 pageBuilder: (context, state) => const CupertinoPage(
                   child: PopularTVShowsView(),
-                ),
-              ),
-              GoRoute(
-                name: AppRoutes.topRatedTvShowsRoute,
-                path: topRatedTVShowsPath,
-                pageBuilder: (context, state) => const CupertinoPage(
-                  child: TopRatedTVShowsView(),
                 ),
               ),
             ],

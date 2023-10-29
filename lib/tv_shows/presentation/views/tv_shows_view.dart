@@ -15,6 +15,7 @@ import 'package:movies_app/core/resources/app_values.dart';
 import 'package:movies_app/core/services/service_locator.dart';
 import 'package:movies_app/core/utils/enums.dart';
 import 'package:movies_app/tv_shows/presentation/controllers/tv_shows_bloc/tv_shows_bloc.dart';
+import 'package:movies_app/tv_shows/presentation/views/all_tv.dart';
 
 class TVShowsView extends StatelessWidget {
   const TVShowsView({super.key});
@@ -66,6 +67,7 @@ class TVShowsWidget extends StatelessWidget {
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CustomSlider(
             itemBuilder: (context, itemIndex, _) {
@@ -75,12 +77,21 @@ class TVShowsWidget extends StatelessWidget {
               );
             },
           ),
-          SectionHeader(
+          const SizedBox(height: 10),
+          const SectionHeaderCustom(
             title: AppStrings.popularShows,
-            onSeeAllTap: () {
-              context.goNamed(AppRoutes.popularTvShowsRoute);
-            },
           ),
+          const Padding(
+            padding: EdgeInsets.only(left: 18),
+            child: SizedBox(
+              height: 5,
+              width: 40,
+              child: DecoratedBox(
+                decoration: BoxDecoration(color: Colors.red),
+              ),
+            ),
+          ),
+          const SizedBox(height: 7),
           SectionListView(
             height: AppSize.s240,
             itemCount: popularTvShows.length,
@@ -88,12 +99,19 @@ class TVShowsWidget extends StatelessWidget {
               return SectionListViewCard(media: popularTvShows[index]);
             },
           ),
-          SectionHeader(
-            title: AppStrings.topRatedShows,
-            onSeeAllTap: () {
-              context.goNamed(AppRoutes.topRatedTvShowsRoute);
-            },
+          const SizedBox(height: 10),
+          const SectionHeaderCustom(title: AppStrings.topRatedShows),
+          const Padding(
+            padding: EdgeInsets.only(left: 18),
+            child: SizedBox(
+              height: 5,
+              width: 40,
+              child: DecoratedBox(
+                decoration: BoxDecoration(color: Colors.red),
+              ),
+            ),
           ),
+          const SizedBox(height: 7),
           SectionListView(
             height: AppSize.s240,
             itemCount: topRatedTvShows.length,
@@ -101,6 +119,29 @@ class TVShowsWidget extends StatelessWidget {
               return SectionListViewCard(media: topRatedTvShows[index]);
             },
           ),
+          const SizedBox(height: 10),
+          SectionHeader(
+            title: 'TV Shows',
+            onSeeAllTap: () {
+              context.goNamed(AppRoutes.popularTvShowsRoute);
+            },
+          ),
+          const Padding(
+            padding: EdgeInsets.only(left: 18),
+            child: SizedBox(
+              height: 5,
+              width: 40,
+              child: DecoratedBox(
+                decoration: BoxDecoration(color: Colors.red),
+              ),
+            ),
+          ),
+          const SizedBox(height: 7),
+          Padding(
+            padding: const EdgeInsets.only(
+                left: AppPadding.p16, right: AppPadding.p16),
+            child: AllTVGridView(results: popularTvShows),
+          )
         ],
       ),
     );

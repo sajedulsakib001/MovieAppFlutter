@@ -15,6 +15,7 @@ import 'package:movies_app/core/resources/app_strings.dart';
 import 'package:movies_app/core/resources/app_values.dart';
 import 'package:movies_app/core/services/service_locator.dart';
 import 'package:movies_app/core/utils/enums.dart';
+import 'package:movies_app/movies/presentation/components/all_movies.dart';
 import 'package:movies_app/movies/presentation/controllers/movies_bloc/movies_bloc.dart';
 import 'package:movies_app/movies/presentation/controllers/movies_bloc/movies_event.dart';
 import 'package:movies_app/movies/presentation/controllers/movies_bloc/movies_state.dart';
@@ -68,44 +69,86 @@ class MoviesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CustomSlider(
-            itemBuilder: (context, itemIndex, _) {
-              return SliderCard(
-                media: nowPlayingMovies[itemIndex],
-                itemIndex: itemIndex,
-              );
-            },
-          ),
-          SectionHeader(
-            title: AppStrings.popularMovies,
-            onSeeAllTap: () {
-              context.goNamed(AppRoutes.popularMoviesRoute);
-            },
-          ),
-          SectionListView(
-            height: AppSize.s240,
-            itemCount: popularMovies.length,
-            itemBuilder: (context, index) {
-              return SectionListViewCard(media: popularMovies[index]);
-            },
-          ),
-          SectionHeader(
-            title: AppStrings.topRatedMovies,
-            onSeeAllTap: () {
-              context.goNamed(AppRoutes.topRatedMoviesRoute);
-            },
-          ),
-          SectionListView(
-            height: AppSize.s240,
-            itemCount: topRatedMovies.length,
-            itemBuilder: (context, index) {
-              return SectionListViewCard(media: topRatedMovies[index]);
-            },
-          ),
-        ],
+      child: Expanded(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CustomSlider(
+              itemBuilder: (context, itemIndex, _) {
+                return SliderCard(
+                  media: nowPlayingMovies[itemIndex],
+                  itemIndex: itemIndex,
+                );
+              },
+            ),
+            const SizedBox(height: 10),
+            const SectionHeaderCustom(
+              title: AppStrings.popularMovies,
+            ),
+            const Padding(
+              padding: EdgeInsets.only(left: 18),
+              child: SizedBox(
+                height: 5,
+                width: 40,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(color: Colors.red),
+                ),
+              ),
+            ),
+            const SizedBox(height: 7),
+            SectionListView(
+              height: AppSize.s240,
+              itemCount: popularMovies.length,
+              itemBuilder: (context, index) {
+                return SectionListViewCard(media: popularMovies[index]);
+              },
+            ),
+            const SizedBox(height: 10),
+            const SectionHeaderCustom(
+              title: AppStrings.topRatedMovies,
+            ),
+            const Padding(
+              padding: EdgeInsets.only(left: 18),
+              child: SizedBox(
+                height: 5,
+                width: 40,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(color: Colors.red),
+                ),
+              ),
+            ),
+            const SizedBox(height: 7),
+            SectionListView(
+              height: AppSize.s240,
+              itemCount: topRatedMovies.length,
+              itemBuilder: (context, index) {
+                return SectionListViewCard(media: topRatedMovies[index]);
+              },
+            ),
+            const SizedBox(height: 10),
+            SectionHeader(
+                title: 'Movies',
+                onSeeAllTap: () {
+                  context.goNamed(AppRoutes.popularMoviesRoute);
+                }),
+            const Padding(
+              padding: EdgeInsets.only(left: 18),
+              child: SizedBox(
+                height: 5,
+                width: 40,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(color: Colors.red),
+                ),
+              ),
+            ),
+            const SizedBox(height: 7),
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: AppPadding.p16, right: AppPadding.p16),
+              child: AllMoviesGridView(results: popularMovies),
+            )
+          ],
+        ),
       ),
     );
   }

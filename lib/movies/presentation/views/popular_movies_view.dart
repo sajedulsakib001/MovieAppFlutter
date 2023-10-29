@@ -6,10 +6,9 @@ import 'package:movies_app/core/presentation/components/loading_indicator.dart';
 import 'package:movies_app/core/presentation/components/custom_app_bar.dart';
 import 'package:movies_app/core/presentation/components/vertical_listview_card.dart';
 import 'package:movies_app/core/resources/app_strings.dart';
-
-import 'package:movies_app/core/presentation/components/vertical_listview.dart';
 import 'package:movies_app/core/services/service_locator.dart';
 import 'package:movies_app/core/utils/enums.dart';
+import 'package:movies_app/movies/presentation/components/all_movie_page.dart';
 import 'package:movies_app/movies/presentation/controllers/popular_movies_bloc/popular_movies_bloc.dart';
 
 class PopularMoviesView extends StatelessWidget {
@@ -61,7 +60,7 @@ class PopularMoviesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<PopularMoviesBloc, PopularMoviesState>(
       builder: (context, state) {
-        return VerticalListView(
+        return AllGridListView(
           itemCount: movies.length + 1,
           itemBuilder: (context, index) {
             if (index < movies.length) {
